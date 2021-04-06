@@ -1,6 +1,6 @@
 'use strict';
 
-//Deliração das variáveis
+//Arrays de imagens
 let images = [
     {
         "id": "1001",
@@ -43,6 +43,7 @@ let images = [
         "download_url": "https://picsum.photos/id/1005/5760/3840"
     }];
 
+//Constantes
 const slider = document.querySelector(".slider");
 const btns = document.querySelectorAll(".btn");
 const back = document.querySelector('.background');
@@ -52,6 +53,7 @@ var time = 3000;
 var index = 0;
 var op_index = 0;
 
+//Cria o html com as imagens e botões de próximo e anterior
 const loadImages = (images, container) => {
     images.forEach((image, indice) => {
 
@@ -71,12 +73,14 @@ const loadImages = (images, container) => {
     })
 }
 
+//Carrega as imagens do array
 const loadBackground = (imgBack, div) => {
     imgBack.forEach(img => {
         div.innerHTML += `<img src="${img.download_url}" class="bg">`
     })
 }
 
+//Botões de numeração das imagens
 const loadOptions = () => {
     let i = 0;
     for (i; i < images.length; i++) {
@@ -95,6 +99,7 @@ var size = slides[index].clientWidth;
 
 update();
 
+//Atualiza o slider
 function update() {
     slider.style.transform = "translateX(" + (-size * index) + "px)";
 
@@ -105,11 +110,13 @@ function update() {
     options[op_index].classList.add('colored');
 }
 
+//Chama o efeito de atualização do slider
 function slide() {
     slider.style.transition = "transform .5s ease-in-out";
     update();
 }
 
+//Botões proximo e anterior
 function btnCheck() {
 
     var id;
@@ -139,6 +146,7 @@ function btnCheck() {
     slide();
 }
 
+//Botões para passar as imagens
 function optionFunc() {
     let i = Number(this.getAttribute('op-index'));
     op_index = i;
@@ -148,7 +156,7 @@ function optionFunc() {
 btns.forEach(btn => btn.addEventListener('click', btnCheck));
 options.forEach(option => option.addEventListener('click', optionFunc));
 
-
+//Para fazer as imagens passarem automáticamente a cada X segundos
 const loadNext = () => {
     setInterval(function () {
         document.querySelector('.img').classList.add('opacityTransition');
