@@ -1,7 +1,7 @@
 'use strict';
 
 //Arrays de imagens
-let images = [
+const images = [
     {
         "id": "1001",
         "author": "Danielle MacInnes",
